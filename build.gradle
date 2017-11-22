@@ -30,6 +30,15 @@ minecraft {
     useDepAts = true
 }
 
+jar {
+    manifest {
+	    attributes(
+            'LanguageAdapter': project.adapterClass,
+            'Created-By': "${System.properties['java.version']} (${System.properties['java.vendor']})"
+        )
+    }
+}
+
 processResources {
     // this will ensure that this task is redone when the versions change.
     inputs.property "version", project.version

@@ -5,3 +5,8 @@
 *.iml
 /out/
 /run
+/bin/
+
+.classpath
+.project
+.settings
