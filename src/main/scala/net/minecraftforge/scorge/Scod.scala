@@ -1,5 +1,5 @@
 package net.minecraftforge.scorge
 
-trait Scod {
+import scala.annotation.ClassfileAnnotation
 
-}
+class Scod(id:String) extends ClassfileAnnotation

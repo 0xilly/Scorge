@@ -1,84 +1,68 @@
-buildscript {
-    repositories {
-        jcenter()
-        maven {
-            name = "forge"
-            url = "http://files.minecraftforge.net/maven"
-        }
-    }
-    dependencies {
-        classpath "net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT"
-    }
-}
+//buildscript {
+//    repositories {
+//        jcenter()
+//        maven {
+//            name = "forge"
+//            url = "http://files.minecraftforge.net/maven"
+//        }
+//    }
+//    dependencies {
+//        classpath "net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT"
+//    }
+//}
 plugins {
+    id 'scala'
     id 'com.github.johnrengelman.shadow' version '1.2.3'
 }
 
-apply plugin: "net.minecraftforge.gradle.forge"
+//apply plugin: "net.minecraftforge.gradle.forge"
 
 version = modVersion
 group = modGroup
 archivesBaseName = modBaseName
 
-minecraft {
-    version = project.forgeVersion
-    runDir = "run"
+//minecraft {
+//    version = project.forgeVersion
+//    runDir = "run"
+//
+//
+//    mappings = project.mcpVersion
+//
+//    useDepAts = true
+//}
 
-
-    mappings = project.mcpVersion
-
-    useDepAts = true
-}
-
-processResources {
-    // this will ensure that this task is redone when the versions change.
-    inputs.property "version", project.version
-    inputs.property "mcversion", project.minecraft.version
-
-    // replace stuff in mcmod.info, nothing else
-    from(sourceSets.main.resources.srcDirs) {
-        include "mcmod.info"
-
-        // replace version and mcversion
-        expand "version": project.version, "mcversion": project.minecraft.version
-    }
-
-    // copy everything else, thats not the mcmod.info
-    from(sourceSets.main.resources.srcDirs) {
-        exclude "mcmod.info"
-    }
-}
+//processResources {
+//    // this will ensure that this task is redone when the versions change.
+//    inputs.property "version", project.version
+//    inputs.property "mcversion", project.minecraft.version
+//
+//    // replace stuff in mcmod.info, nothing else
+//    from(sourceSets.main.resources.srcDirs) {
+//        include "mcmod.info"
+//
+//        // replace version and mcversion
+//        expand "version": project.version, "mcversion": project.minecraft.version
+//    }
+//
+//    // copy everything else, thats not the mcmod.info
+//    from(sourceSets.main.resources.srcDirs) {
+//        exclude "mcmod.info"
+//    }
+//}
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    compile 'org.scala-lang:scala-actors-migration_2.11:1.1.0'
-    compile 'org.scala-lang:scala-compiler:2.11.1'
-    compile 'org.scala-lang.plugins:scala-continuations-library_2.11:1.0.2'
-    compile 'org.scala-lang.plugins:scala-continuations-plugin_2.11.1:1.0.2'
-    compile 'org.scala-lang:scala-library:2.11.1'
-    compile 'org.scala-lang.modules:scala-parser-combinators_2.11:1.0.1'
-    compile 'org.scala-lang:scala-reflect:2.11.1'
-    compile 'org.scala-lang.modules:scala-swing_2.11:1.0.1'
-    compile 'org.scala-lang.modules:scala-xml_2.11:1.0.2'
-
+    implementation 'org.scala-lang:scala-library:2.12.6'
 
 }
 
 shadowJar {
     classifier = ""
     dependencies {
-        include(dependency('org.scala-lang:scala-actors-migration_2.11:1.1.0'))
-        include(dependency('org.scala-lang:scala-compiler:2.11.1'))
-        include(dependency('org.scala-lang.plugins:scala-continuations-library_2.11:1.0.2'))
-        include(dependency('org.scala-lang.plugins:scala-continuations-plugin_2.11.1:1.0.2'))
-        include(dependency('org.scala-lang:scala-library:2.11.1'))
-        include(dependency('org.scala-lang.modules:scala-parser-combinators_2.11:1.0.1'))
-        include(dependency('org.scala-lang:scala-reflect:2.11.1'))
-        include(dependency('org.scala-lang.modules:scala-swing_2.11:1.0.1'))
-        include(dependency('org.scala-lang.modules:scala-xml_2.11:1.0.2'))
+        include(dependency('org.scala-lang:scala-library:2.12.6'))
     }
 
 }
@@ -90,11 +74,12 @@ artifacts {
     archives shadowJar
 }
 
-reobf {
-    shadowJar {
-        mappingType = "SEARGE"
-    }
-}
+//reobf {
+//    shadowJar {
+//        mappingType = "SEARGE"
+//    }
+//}
 
-tasks.reobfShadowJar.mustRunAfter shadowJar
-tasks.build.dependsOn reobfShadowJar
+//tasks.reobfShadowJar.mustRunAfter shadowJar
+//tasks.build.dependsOn reobfShadowJar
+
